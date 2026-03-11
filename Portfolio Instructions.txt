@@ -1,0 +1,92 @@
+﻿Build me a complete, single-page personal portfolio website using HTML, CSS, and vanilla JavaScript. This should look and feel like a high-end creative professional's portfolio — clean, minimal, modern, and visually impressive. Think the aesthetic of a Pentagram or NYT journalist's personal site: confident typography, generous whitespace, smooth interactions.
+DESIGN DIRECTION
+
+
+Color palette: dark navy or off-black background with white/cream text, one accent color (a muted gold, warm red, or electric blue — pick whichever fits a media/journalism aesthetic)
+Font pairing: a serif for headings (like Playfair Display or Freight Display via Google Fonts) and a clean sans-serif for body (Inter or DM Sans)
+Fully responsive — looks great on mobile, tablet, and desktop
+Subtle scroll animations (fade-in on scroll using Intersection Observer)
+Sticky navigation bar that becomes slightly transparent/blurred on scroll
+No clutter, no stock-photo vibes — this should feel editorial and personal
+
+
+PAGE STRUCTURE
+1. Hero Section
+
+
+Full-screen or near-full-screen opening
+My name in large, bold serif type: [YOUR NAME HERE]
+A one-line title/tagline underneath: e.g. "Journalist · Storyteller · Digital Producer"
+A short 2–3 sentence bio pulled from my cover letter:
+Subtle animated background (could be a slow gradient shift or a very faint texture — nothing distracting)
+A "View My Work" CTA button that smooth-scrolls to the portfolio sections
+
+
+2. Navigation
+
+
+Fixed top nav with: About | Video & Audio | Websites | Writing | Contact
+Each item smooth-scrolls to its section
+On mobile, collapse into a hamburger menu
+
+
+3. Video & Audio Stories Section
+
+
+Section heading: "Video & Audio"
+Grid layout (2 columns desktop, 1 column mobile) of project cards
+Each card has: thumbnail image (use a placeholder if no image provided), project title, a 1-sentence description, the outlet/platform it was made for, and a "Watch / Listen" button that links to the URL
+Include these projects:
+All files ending in .mp4 should go here. The podcast file is audio only so be sure to make that known
+
+
+4. Websites Section
+
+
+Section heading: "Web Projects"
+Similar card grid layout
+Each card shows: a screenshot or placeholder, site name, short description of what it is/does, tech stack used if relevant, and a "Visit Site" button
+Include these projects:
+@https://drewsite.com/
+@https://ultrapropertyservices.net/
+
+
+5. Writing Section
+
+
+Section heading: "Writing"
+A slightly different layout — more editorial. Use a list/article style rather than cards (think NYT or The Atlantic article listings)
+Each piece shows: headline as a link, publication name, date (if available), and a 1-sentence synopsis
+Include these pieces:
+The HaakSaan and Profile story should go here
+
+
+6. Contact / Footer Section
+
+
+Clean, simple footer with: my email address, links to LinkedIn, Twitter/X, and any other relevant profiles
+A small "Download Résumé" button that links to or downloads my résumé PDF
+Copyright line at the bottom
+
+
+TECHNICAL REQUIREMENTS
+
+
+Pure HTML/CSS/JS — no frameworks, no build tools, just files Cursor can generate and I can open directly in a browser
+All in one index.html file with embedded <style> and <script> tags, OR neatly split into index.html, styles.css, and script.js — your choice, whichever is cleaner
+Smooth scroll behavior throughout
+All external links open in a new tab
+The résumé download should reference a file called resume.pdf in the same folder
+All project cards should have a hover effect (subtle lift/shadow or color shift)
+Make the code clean and well-commented so I can easily swap in real content
+
+
+
+
+That's your prompt. A few tips for when you use it in Cursor:
+
+
+Fill in the bracketed sections with your real name, bio, project titles, and URLs before submitting — the more detail you give it, the less you'll have to edit after.
+Drop your résumé PDF into the same project folder and name it resume.pdf so the download button works automatically.
+If you want to give it your actual files to read from, you can say "I've included my résumé in the folder — pull my name, title, and bio from it" and Cursor's agent mode will read it directly.
+After it generates, you can follow up with: "Now make the color scheme warmer / darker / more minimal" to dial in the vibe.
