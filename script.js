@@ -79,6 +79,14 @@ const videoModal = document.getElementById("video-modal");
 const videoIframe = videoModal?.querySelector("iframe");
 const modalCloseEls = videoModal?.querySelectorAll("[data-video-close]") ?? [];
 
+function isIOS() {
+  // iPadOS can identify as Mac; touch points help distinguish.
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
+}
+
 function openVideoModal(src) {
   if (!videoModal || !videoIframe) return;
   videoIframe.src = src;
@@ -97,6 +105,15 @@ document.querySelectorAll(".card-cta[data-video-src]").forEach((btn) => {
   btn.addEventListener("click", () => {
     const src = btn.getAttribute("data-video-src");
     if (!src) return;
+    const fallbackHref = btn.getAttribute("data-fallback-href");
+
+    // Mobile Safari often blocks cross-site iframe embeds (Google Drive preview),
+    // which can produce a Google 400 error. In that case, open the Drive viewer instead.
+    if (isIOS() && src.includes("drive.google.com") && fallbackHref) {
+      window.location.href = fallbackHref;
+      return;
+    }
+
     openVideoModal(src);
   });
 });
