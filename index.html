@@ -373,17 +373,34 @@
   <div class="video-modal" id="video-modal" aria-hidden="true">
     <div class="video-modal-backdrop" data-video-close></div>
     <div class="video-modal-dialog" role="dialog" aria-modal="true">
-      <button class="video-modal-close" type="button" aria-label="Close video" data-video-close>
-        ×
-      </button>
-      <div class="video-modal-frame">
-        <iframe
-          src=""
-          title="Embedded media"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          loading="lazy"
-        ></iframe>
+      <div class="video-modal-panel">
+        <button class="video-modal-close" type="button" aria-label="Close video" data-video-close>
+          ×
+        </button>
+        <div class="video-modal-frame">
+          <iframe
+            src=""
+            title="Embedded media"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          ></iframe>
+        </div>
+        <div class="video-modal-drive-footer" id="video-modal-drive-footer" hidden>
+          <a
+            id="video-modal-external"
+            class="video-modal-external-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Open in Google Drive</a>
+          <p class="video-modal-hint">
+            Embedded playback sometimes fails on strict networks or when a file isn’t shared for public viewing.
+            If you see “Unable to load video,” use the button above — and ensure each file in Drive is set to
+            <strong>Anyone with the link can view</strong>.
+          </p>
+        </div>
       </div>
     </div>
   </div>

@@ -612,8 +612,16 @@ main {
   padding: 40px 16px;
 }
 
-.video-modal-frame {
+.video-modal-panel {
+  position: relative;
   width: min(960px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.video-modal-frame {
+  width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 18px;
   overflow: hidden;
@@ -628,10 +636,46 @@ main {
   border: none;
 }
 
+.video-modal-drive-footer {
+  padding: 0 4px 8px;
+  text-align: center;
+}
+
+.video-modal-external-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--accent);
+  color: var(--text);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.video-modal-external-link:hover {
+  background: var(--accent-soft);
+  color: #fff;
+}
+
+.video-modal-hint {
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .video-modal-close {
   position: absolute;
-  top: 18px;
-  right: 20px;
+  top: -6px;
+  right: 0;
+  z-index: 5;
   width: 32px;
   height: 32px;
   border-radius: 999px;

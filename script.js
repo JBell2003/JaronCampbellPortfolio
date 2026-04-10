@@ -87,9 +87,29 @@ function isIOS() {
   );
 }
 
-function openVideoModal(src) {
+/** Build a /view link from a Drive /preview URL so embed failures still have a working fallback. */
+function driveViewUrlFromPreview(previewUrl) {
+  if (!previewUrl || !previewUrl.includes("drive.google.com")) return null;
+  const match = previewUrl.match(/\/file\/d\/([^/]+)/);
+  if (!match) return null;
+  return `https://drive.google.com/file/d/${match[1]}/view?usp=sharing`;
+}
+
+function openVideoModal(src, options = {}) {
   if (!videoModal || !videoIframe) return;
   videoIframe.src = src;
+
+  const driveFooter = document.getElementById("video-modal-drive-footer");
+  const driveLink = document.getElementById("video-modal-external");
+  const driveExternalUrl = options.driveExternalUrl || null;
+
+  if (driveFooter && driveLink && driveExternalUrl) {
+    driveLink.href = driveExternalUrl;
+    driveFooter.hidden = false;
+  } else if (driveFooter) {
+    driveFooter.hidden = true;
+  }
+
   videoModal.classList.add("open");
   videoModal.setAttribute("aria-hidden", "false");
 }
@@ -97,6 +117,8 @@ function openVideoModal(src) {
 function closeVideoModal() {
   if (!videoModal || !videoIframe) return;
   videoIframe.src = "";
+  const driveFooter = document.getElementById("video-modal-drive-footer");
+  if (driveFooter) driveFooter.hidden = true;
   videoModal.classList.remove("open");
   videoModal.setAttribute("aria-hidden", "true");
 }
@@ -107,14 +129,22 @@ document.querySelectorAll(".card-cta[data-video-src]").forEach((btn) => {
     if (!src) return;
     const fallbackHref = btn.getAttribute("data-fallback-href");
 
+    const isDriveEmbed = src.includes("drive.google.com");
+    const driveViewUrl =
+      fallbackHref || (isDriveEmbed ? driveViewUrlFromPreview(src) : null);
+
     // Mobile Safari often blocks cross-site iframe embeds (Google Drive preview),
     // which can produce a Google 400 error. In that case, open the Drive viewer instead.
-    if (isIOS() && src.includes("drive.google.com") && fallbackHref) {
-      window.location.href = fallbackHref;
+    if (isIOS() && isDriveEmbed && driveViewUrl) {
+      window.location.href = driveViewUrl;
       return;
     }
 
-    openVideoModal(src);
+    // For Google Drive: always pass a view URL so the modal can show "Open in Google Drive"
+    // when the embedded player fails (network, permissions, or browser blocking).
+    openVideoModal(src, {
+      driveExternalUrl: isDriveEmbed ? driveViewUrl : null,
+    });
   });
 });
 
